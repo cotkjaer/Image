@@ -10,6 +10,7 @@
 		8FD876071C762FB000181FA6 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD876061C762FB000181FA6 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8FD8760E1C762FB000181FA6 /* Image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FD876031C762FB000181FA6 /* Image.framework */; };
 		8FD876131C762FB000181FA6 /* ImageTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD876121C762FB000181FA6 /* ImageTests.swift */; };
+		8FD8761E1C762FBE00181FA6 /* NSData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FD8761D1C762FBE00181FA6 /* NSData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		8FD8760D1C762FB000181FA6 /* ImageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ImageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FD876121C762FB000181FA6 /* ImageTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTests.swift; sourceTree = "<group>"; };
 		8FD876141C762FB000181FA6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8FD8761D1C762FBE00181FA6 /* NSData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		8FD876051C762FB000181FA6 /* Image */ = {
 			isa = PBXGroup;
 			children = (
+				8FD8761D1C762FBE00181FA6 /* NSData.swift */,
 				8FD876061C762FB000181FA6 /* Image.h */,
 				8FD876081C762FB000181FA6 /* Info.plist */,
 			);
@@ -194,6 +197,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FD8761E1C762FBE00181FA6 /* NSData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +312,7 @@
 		8FD876181C762FB000181FA6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -318,12 +323,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.silverback-it.Image";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		8FD876191C762FB000181FA6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
