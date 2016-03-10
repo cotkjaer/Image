@@ -12,11 +12,9 @@
 		8F7711831C87399400B6B218 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 8F7711821C87399400B6B218 /* Cartfile */; };
 		8F7711881C873A8200B6B218 /* Arithmetic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711841C873A8200B6B218 /* Arithmetic.framework */; };
 		8F7711891C873A8200B6B218 /* Clamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711851C873A8200B6B218 /* Clamp.framework */; };
-		8F77118A1C873A8200B6B218 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711861C873A8200B6B218 /* Geometry.framework */; };
 		8F77118B1C873A8200B6B218 /* Graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711871C873A8200B6B218 /* Graphics.framework */; };
 		8F77118C1C8742E200B6B218 /* Arithmetic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711841C873A8200B6B218 /* Arithmetic.framework */; };
 		8F77118D1C8742E200B6B218 /* Clamp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711851C873A8200B6B218 /* Clamp.framework */; };
-		8F77118E1C8742E200B6B218 /* Geometry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711861C873A8200B6B218 /* Geometry.framework */; };
 		8F77118F1C8742E200B6B218 /* Graphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7711871C873A8200B6B218 /* Graphics.framework */; };
 		8F8D90EF1C8463BF00142128 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F8D90EE1C8463BF00142128 /* UIImage.swift */; };
 		8FD876071C762FB000181FA6 /* Image.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FD876061C762FB000181FA6 /* Image.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,7 +39,6 @@
 		8F7711821C87399400B6B218 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		8F7711841C873A8200B6B218 /* Arithmetic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Arithmetic.framework; path = Carthage/Build/iOS/Arithmetic.framework; sourceTree = "<group>"; };
 		8F7711851C873A8200B6B218 /* Clamp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Clamp.framework; path = Carthage/Build/iOS/Clamp.framework; sourceTree = "<group>"; };
-		8F7711861C873A8200B6B218 /* Geometry.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Geometry.framework; path = Carthage/Build/iOS/Geometry.framework; sourceTree = "<group>"; };
 		8F7711871C873A8200B6B218 /* Graphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Graphics.framework; path = Carthage/Build/iOS/Graphics.framework; sourceTree = "<group>"; };
 		8F8D90EE1C8463BF00142128 /* UIImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		8FD876031C762FB000181FA6 /* Image.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Image.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +57,6 @@
 			files = (
 				8F7711881C873A8200B6B218 /* Arithmetic.framework in Frameworks */,
 				8F7711891C873A8200B6B218 /* Clamp.framework in Frameworks */,
-				8F77118A1C873A8200B6B218 /* Geometry.framework in Frameworks */,
 				8F77118B1C873A8200B6B218 /* Graphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,7 +67,6 @@
 			files = (
 				8F77118C1C8742E200B6B218 /* Arithmetic.framework in Frameworks */,
 				8F77118D1C8742E200B6B218 /* Clamp.framework in Frameworks */,
-				8F77118E1C8742E200B6B218 /* Geometry.framework in Frameworks */,
 				8F77118F1C8742E200B6B218 /* Graphics.framework in Frameworks */,
 				8FD8760E1C762FB000181FA6 /* Image.framework in Frameworks */,
 			);
@@ -85,7 +80,6 @@
 			children = (
 				8F7711841C873A8200B6B218 /* Arithmetic.framework */,
 				8F7711851C873A8200B6B218 /* Clamp.framework */,
-				8F7711861C873A8200B6B218 /* Geometry.framework */,
 				8F7711871C873A8200B6B218 /* Graphics.framework */,
 				8F7711821C87399400B6B218 /* Cartfile */,
 				8FD876051C762FB000181FA6 /* Image */,
