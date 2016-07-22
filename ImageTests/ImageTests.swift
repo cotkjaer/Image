@@ -9,7 +9,6 @@
 import XCTest
 @testable import Image
 import Graphics
-import Geometry
 
 class ImageTests: XCTestCase
 {

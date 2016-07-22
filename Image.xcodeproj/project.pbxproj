@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8F33CED61D40FEA70085BD56 /* UIImage+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CED51D40FEA70085BD56 /* UIImage+Text.swift */; };
+		8F33CED81D4103290085BD56 /* ImageTextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F33CED71D4103290085BD56 /* ImageTextTests.swift */; };
 		8F4B32CD1C8EDC9400275253 /* UIImage+Alpha.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4B32CC1C8EDC9400275253 /* UIImage+Alpha.swift */; };
 		8F7711811C8735B600B6B218 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7711801C8735B600B6B218 /* Gradient.swift */; };
 		8F7711831C87399400B6B218 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 8F7711821C87399400B6B218 /* Cartfile */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8F33CED51D40FEA70085BD56 /* UIImage+Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Text.swift"; sourceTree = "<group>"; };
+		8F33CED71D4103290085BD56 /* ImageTextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTextTests.swift; sourceTree = "<group>"; };
 		8F4B32CC1C8EDC9400275253 /* UIImage+Alpha.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Alpha.swift"; sourceTree = "<group>"; };
 		8F7711801C8735B600B6B218 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		8F7711821C87399400B6B218 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 			children = (
 				8F8D90EE1C8463BF00142128 /* UIImage.swift */,
 				8F4B32CC1C8EDC9400275253 /* UIImage+Alpha.swift */,
+				8F33CED51D40FEA70085BD56 /* UIImage+Text.swift */,
 				8F7711801C8735B600B6B218 /* Gradient.swift */,
 				8FD8761D1C762FBE00181FA6 /* NSData.swift */,
 				8FD876061C762FB000181FA6 /* Image.h */,
@@ -114,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				8FD876121C762FB000181FA6 /* ImageTests.swift */,
+				8F33CED71D4103290085BD56 /* ImageTextTests.swift */,
 				8FD876141C762FB000181FA6 /* Info.plist */,
 			);
 			path = ImageTests;
@@ -228,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F33CED61D40FEA70085BD56 /* UIImage+Text.swift in Sources */,
 				8F4B32CD1C8EDC9400275253 /* UIImage+Alpha.swift in Sources */,
 				8FD8761E1C762FBE00181FA6 /* NSData.swift in Sources */,
 				8F8D90EF1C8463BF00142128 /* UIImage.swift in Sources */,
@@ -239,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8F33CED81D4103290085BD56 /* ImageTextTests.swift in Sources */,
 				8FD876131C762FB000181FA6 /* ImageTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
