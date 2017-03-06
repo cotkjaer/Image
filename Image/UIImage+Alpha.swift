@@ -13,11 +13,13 @@ import CoreGraphics
 extension UIImage
 {
     // Returns true if the image has an alpha layer
-    public var hasAlpha : Bool
+    public var hasAlpha: Bool
         {
-            switch CGImageGetAlphaInfo(self.CGImage)
+        guard let cgImage = self.cgImage else { return false }
+
+            switch cgImage.alphaInfo
             {
-            case .First, .Last, .PremultipliedFirst, .PremultipliedLast:
+            case .first, .last, .premultipliedFirst, .premultipliedLast:
                 return true
                 
             default:

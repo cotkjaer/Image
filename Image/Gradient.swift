@@ -11,17 +11,17 @@ import Graphics
 
 // MARK: - Gradient
 
-private func createGradientWithColors(colors: [UIColor]) -> CGGradientRef?
+private func createGradientWithColors(_ colors: [UIColor]) -> CGGradient?
 {
     //        let beginColor = UIColor(white: 1, alpha: 1).CGColor
     //        let endColor = UIColor(white: 1, alpha: 0).CGColor
     //
     //        let colors = [beginColor, endColor]
     
-    return CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), colors.map({$0.CGColor}) , nil)
+    return CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors.map({$0.cgColor}) as CFArray , locations: nil)
 }
 
-private let GradientDrawingOptions : CGGradientDrawingOptions = [.DrawsBeforeStartLocation, .DrawsAfterEndLocation]
+private let GradientDrawingOptions : CGGradientDrawingOptions = [.drawsBeforeStartLocation, .drawsAfterEndLocation]
 
 extension UIImage
 {
@@ -30,19 +30,19 @@ extension UIImage
         endAnchor: CGPoint = CGPoint(x: 0.5, y: 0.5),
         colors: [UIColor] = [UIColor(white: 1, alpha: 1), UIColor(white: 1, alpha: 0)])
     {
-        guard let image = UIImage.imageWithRadialGradient(size, startAnchor: startAnchor, endAnchor: endAnchor, colors: colors)?.CGImage else { self.init(); return nil }
+        guard let image = UIImage.imageWithRadialGradient(size, startAnchor: startAnchor, endAnchor: endAnchor, colors: colors)?.cgImage else { self.init(); return nil }
         
-        self.init(CGImage: image)
+        self.init(cgImage: image)
     }
     
-    private static func imageWithRadialGradient(size: CGSize,
+    fileprivate static func imageWithRadialGradient(_ size: CGSize,
         startAnchor: CGPoint,
         endAnchor: CGPoint,
         colors: [UIColor]) -> UIImage?
     {
         guard let gradient = createGradientWithColors(colors) else { return nil }
 
-        let opaque = !colors.contains({ $0.CGColor.alpha < 1 })
+        let opaque = !colors.contains(where: { $0.cgColor.alpha < 1 })
 
         UIGraphicsBeginImageContextWithOptions(size, opaque, 0)
         
@@ -55,7 +55,7 @@ extension UIImage
         
         let endRadius = max(max(size.width - endCenter.x, endCenter.x), max(size.height - endCenter.y, endCenter.y))
         
-        CGContextDrawRadialGradient(context, gradient, startCenter, 0, endCenter, endRadius, GradientDrawingOptions)
+        context.drawRadialGradient(gradient, startCenter: startCenter, startRadius: 0, endCenter: endCenter, endRadius: endRadius, options: GradientDrawingOptions)
         
         return UIGraphicsGetImageFromCurrentImageContext()
     }
@@ -65,19 +65,19 @@ extension UIImage
         endAnchor: CGPoint = CGPoint(x: 1, y: 0.5),
         colors: [UIColor] = [UIColor(white: 1, alpha: 1), UIColor(white: 1, alpha: 0)])
     {
-        guard let image = UIImage.imageWithLinearGradient(size, startAnchor: startAnchor, endAnchor: endAnchor, colors: colors)?.CGImage else { self.init(); return nil }
+        guard let image = UIImage.imageWithLinearGradient(size, startAnchor: startAnchor, endAnchor: endAnchor, colors: colors)?.cgImage else { self.init(); return nil }
         
-        self.init(CGImage: image)
+        self.init(cgImage: image)
     }
     
-    private static func imageWithLinearGradient(size: CGSize,
+    fileprivate static func imageWithLinearGradient(_ size: CGSize,
         startAnchor: CGPoint = CGPoint(x: 0, y: 0.5),
         endAnchor: CGPoint = CGPoint(x: 1, y: 0.5),
         colors: [UIColor] = [UIColor(white: 1, alpha: 1), UIColor(white: 1, alpha: 0)]) -> UIImage?
     {
         guard let gradient = createGradientWithColors(colors) else { return nil }
         
-        let opaque = !colors.contains({ $0.CGColor.alpha < 1 })
+        let opaque = !colors.contains(where: { $0.cgColor.alpha < 1 })
 
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         
@@ -88,7 +88,7 @@ extension UIImage
         let startPoint = CGPoint(x: size.width * startAnchor.x.clamped(0, 1), y: size.height * startAnchor.y.clamped(0, 1))
         let endPoint = CGPoint(x: size.width * endAnchor.x.clamped(0, 1), y: size.height * endAnchor.y.clamped(0, 1))
         
-        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, GradientDrawingOptions)
+        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: GradientDrawingOptions)
         
         return UIGraphicsGetImageFromCurrentImageContext()
     }

@@ -10,7 +10,7 @@ import Foundation
 
 //MARK: - Image
 
-extension NSData
+extension Data
 {
     public var asImage : UIImage? { return UIImage(data: self) }
 }

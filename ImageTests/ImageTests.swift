@@ -24,7 +24,7 @@ class ImageTests: XCTestCase
         
         XCTAssertEqual(horizontal!.saveAs("png", baseFileName: "horizontal", folderPath: "/Users/cot/Desktop"), true)
         
-        XCTAssertEqual(horizontal!.size, size * UIScreen.mainScreen().scale)
+        XCTAssertEqual(horizontal!.size, size * UIScreen.main.scale)
         
         colors.append(UIColor(red: 0.5, green: 0.1, blue: 0.5, alpha: 0.5))
         
@@ -36,7 +36,7 @@ class ImageTests: XCTestCase
         
         XCTAssertEqual(vertical!.saveAs("png", baseFileName: "vertical", folderPath: "/Users/cot/Desktop"), true)
         
-        XCTAssertEqual(vertical!.size, size * UIScreen.mainScreen().scale)
+        XCTAssertEqual(vertical!.size, size * UIScreen.main.scale)
         
         size = CGSize(width: 300, height: 300)
         
@@ -48,7 +48,7 @@ class ImageTests: XCTestCase
         
         XCTAssertEqual(diagonal!.saveAs("png", baseFileName: "diagonal", folderPath: "/Users/cot/Desktop"), true)
         
-        XCTAssertEqual(diagonal!.size, size * UIScreen.mainScreen().scale)
+        XCTAssertEqual(diagonal!.size, size * UIScreen.main.scale)
     }
     
     func test_radial_gradient_default()
@@ -61,20 +61,20 @@ class ImageTests: XCTestCase
         
         XCTAssertEqual(centered!.saveAs("png", baseFileName: "centered", folderPath: "/Users/cot/Desktop"), true)
         
-        XCTAssertEqual(centered!.size, size * UIScreen.mainScreen().scale)
+        XCTAssertEqual(centered!.size, size * UIScreen.main.scale)
     }
     
     func test_radial_gradient_colors()
     {
         let size = CGSize(width: 300, height: 200)
 
-        let colors = UIImage(radialGradientOfSize: size, colors:[UIColor(red: 0.9, green: 0.9, blue: 0.5, alpha: 1), UIColor(red: 0.2, green: 1, blue: 1, alpha: 1)])
+        let colors = UIImage(data: size, scale:[UIColor(red: 0.9, green: 0.9, blue: 0.5, alpha: 1), UIColor(red: 0.2, green: 1, blue: 1, alpha: 1)])
         
         XCTAssertNotNil(colors)
         
         XCTAssertEqual(colors!.saveAs("png", baseFileName: "colors", folderPath: "/Users/cot/Desktop"), true)
         
-        XCTAssertEqual(colors!.size, size * UIScreen.mainScreen().scale)
+        XCTAssertEqual(colors!.size, size * UIScreen.main.scale)
     }
     
 }

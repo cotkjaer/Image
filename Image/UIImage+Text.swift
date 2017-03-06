@@ -10,21 +10,21 @@ import Foundation
 
 extension UIImage
 {
-    public static func imageWithText(attributedText: NSAttributedString) -> UIImage
+    public static func imageWithText(_ attributedText: NSAttributedString) -> UIImage
     {
         UIGraphicsBeginImageContextWithOptions(attributedText.size(), false, 0)//UIScreen.mainScreen().scale)
         defer { UIGraphicsEndImageContext() }
         
-        attributedText.drawAtPoint(CGPointZero)
+        attributedText.draw(at: CGPoint.zero)
         
-        return UIGraphicsGetImageFromCurrentImageContext()
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
     
     public convenience init?(attributedText: NSAttributedString)
     {
-        guard let cgimage = UIImage.imageWithText(attributedText).CGImage else { return nil }
+        guard let cgimage = UIImage.imageWithText(attributedText).cgImage else { return nil }
         
-        self.init(CGImage: cgimage)
+        self.init(cgImage: cgimage)
     }
     
     public convenience init?(text: String, textFont: UIFont, textColor: UIColor)
@@ -36,7 +36,7 @@ extension UIImage
         self.init(attributedText: aText)
     }
     
-    public func imageWithAddedText(text: String, textFont: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize()), textColor: UIColor = UIColor.darkTextColor()) -> UIImage
+    public func imageWithAddedText(_ text: String, textFont: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize), textColor: UIColor = UIColor.darkText) -> UIImage
     {
         let textAttributes = [ NSFontAttributeName: textFont, NSForegroundColorAttributeName: textColor ]
         
@@ -45,19 +45,19 @@ extension UIImage
         return imageWithAddedAttributedText(aText)
     }
     
-    public func imageWithAddedAttributedText(text: NSAttributedString) -> UIImage
+    public func imageWithAddedAttributedText(_ text: NSAttributedString) -> UIImage
     {
         UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, 0)//UIScreen.mainScreen().scale)
         
         defer { UIGraphicsEndImageContext() }
         
-        drawAtPoint(CGPointZero)
+        draw(at: CGPoint.zero)
         
         let x = (size.width - text.size().width) / 2
         let y = (size.height - text.size().height) / 2
         
-        text.drawAtPoint(CGPoint(x: x, y: y))
+        text.draw(at: CGPoint(x: x, y: y))
         
-        return UIGraphicsGetImageFromCurrentImageContext()
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
 }

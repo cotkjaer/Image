@@ -16,12 +16,12 @@ class ImageTextTests: XCTestCase
     {
         guard let font = UIFont(name: "Arial", size: 96) else { XCTFail("No font"); return }
         
-        let imageA = UIImage(text: "A", textFont: font, textColor: UIColor.orangeColor())
+        let imageA = UIImage(text: "A", textFont: font, textColor: UIColor.orange)
         
         XCTAssertNotNil(imageA)
         XCTAssertEqual(imageA?.saveAs("png", baseFileName: "A", folderPath: "/Users/cot/Desktop"), true)
         
-        let imageAB = imageA?.imageWithAddedText("B", textFont: font, textColor:  UIColor.greenColor())
+        let imageAB = imageA?.imageWithAddedText("B", textFont: font, textColor:  UIColor.green)
         
         XCTAssertNotNil(imageAB)
         XCTAssertEqual(imageAB?.saveAs("png", baseFileName: "AB", folderPath: "/Users/cot/Desktop"), true)

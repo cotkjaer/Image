@@ -12,38 +12,12 @@ import UIKit
 
 extension UIImage
 {
-    /*
-    public func savePNGToFile(fullFilePath: String)
-    {
-        UIImagePNGRepresentation(self)?.writeToFile(fullFilePath, atomically:false)
-    }
-    
-    private func save(optionalData: NSData?, basefilename: String, ext: String) -> Bool
-    {
-        if let URL = NSFileManager.documentURLFor(basefilename, fileExtension: ext)
-        {
-            return optionalData?.writeToURL(URL, atomically: true) ?? false
-        }
-        
-        return false
-    }
-    
-    public func saveAsPNG(basefilename: String) -> Bool
-    {
-        return save(UIImagePNGRepresentation(self), basefilename: basefilename, ext: "png")
-    }
-    
-    public func saveAsJPG(basefilename: String, compressionQuality: CGFloat = 0.8) -> Bool
-    {
-        return save(UIImageJPEGRepresentation(self, compressionQuality), basefilename: basefilename, ext: "jpg")
-    }
-    */
     class func documentDirectoryPath() -> String?
     {
-        return NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).last
+        return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).last
     }
     
-    public func saveAs(type: String = "png", baseFileName: String = "image", folderPath: String? = nil) -> Bool
+    public func saveAs(_ type: String = "png", baseFileName: String = "image", folderPath: String? = nil) -> Bool
     {
         guard let folderPath = folderPath ?? UIImage.documentDirectoryPath() else { return false }
         
@@ -52,10 +26,10 @@ extension UIImage
         switch type
         {
         case "png", "PNG":
-            return UIImagePNGRepresentation(self)?.writeToFile(filePath, atomically: false) ?? false
+            return (try? UIImagePNGRepresentation(self)?.write(to: URL(fileURLWithPath: filePath), options: [])) != nil
             
         case "jpg", "jpeg", "JPG":
-            return UIImageJPEGRepresentation(self, 0.8)?.writeToFile(filePath, atomically: false) ?? false
+            return (try? UIImageJPEGRepresentation(self, 0.8)?.write(to: URL(fileURLWithPath: filePath), options: [])) != nil
             
         default:
             return false
@@ -68,19 +42,19 @@ extension UIImage
 
 extension UIImage
 {
-    public func tintedGradientImageWithColor(tintColor: UIColor) -> UIImage
+    public func tintedGradientImageWithColor(_ tintColor: UIColor) -> UIImage
     {
-        return tintedImageWithColor(tintColor, blendingMode: .Overlay)
+        return tintedImageWithColor(tintColor, blendingMode: .overlay)
     }
     
-    public func tintedImageWithColor(tintColor: UIColor) -> UIImage
+    public func tintedImageWithColor(_ tintColor: UIColor) -> UIImage
     {
-        return tintedImageWithColor(tintColor, blendingMode: .DestinationIn)
+        return tintedImageWithColor(tintColor, blendingMode: .destinationIn)
     }
     
-    private func tintedImageWithColor(tintColor: UIColor, blendingMode blendMode: CGBlendMode) -> UIImage
+    fileprivate func tintedImageWithColor(_ tintColor: UIColor, blendingMode blendMode: CGBlendMode) -> UIImage
     {
-        let bounds = CGRect(origin: CGPointZero, size: size)
+        let bounds = CGRect(origin: CGPoint.zero, size: size)
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         
@@ -90,14 +64,14 @@ extension UIImage
         
         UIRectFill(bounds)
         
-        drawInRect(bounds, blendMode: blendMode, alpha: 1)
+        draw(in: bounds, blendMode: blendMode, alpha: 1)
         
-        if blendMode != .DestinationIn
+        if blendMode != .destinationIn
         {
-            drawInRect(bounds, blendMode: .DestinationIn, alpha: 1)
+            draw(in: bounds, blendMode: .destinationIn, alpha: 1)
         }
         
-        return UIGraphicsGetImageFromCurrentImageContext()
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
 }
 
@@ -105,46 +79,46 @@ extension UIImage
 
 extension UIImage
 {
-    public func imageScaledToSize(scaledSize: CGSize) -> UIImage
+    public func imageScaledToSize(_ scaledSize: CGSize) -> UIImage
     {
         // In next line, pass 0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
         // Pass 1 to force exact pixel size.
         UIGraphicsBeginImageContextWithOptions(scaledSize, false, 0)
         defer { UIGraphicsEndImageContext() }
         
-        drawInRect(CGRect(origin: CGPointZero, size: scaledSize))
+        draw(in: CGRect(origin: CGPoint.zero, size: scaledSize))
         
-        return UIGraphicsGetImageFromCurrentImageContext()
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
     
-    private func compositeImage(path:UIBezierPath, usingBlendMode blend: CGBlendMode) -> UIImage
+    fileprivate func compositeImage(_ path:UIBezierPath, usingBlendMode blend: CGBlendMode) -> UIImage
     {
         let pathBounds = path.bounds
         
-        path.applyTransform(CGAffineTransformMakeTranslation(-pathBounds.origin.x, -pathBounds.origin.y))
+        path.apply(CGAffineTransform(translationX: -pathBounds.origin.x, y: -pathBounds.origin.y))
         
         // Create Image context the size of the paths bounds
         UIGraphicsBeginImageContextWithOptions(pathBounds.size, false, scale)
         defer { UIGraphicsEndImageContext() }
         
         // First draw an opaque path...
-        UIColor.blackColor().setFill()
+        UIColor.black.setFill()
         path.fill()
         
         // ...then composite with the image.
         
-        drawAtPoint(CGPoint(x: -pathBounds.origin.x, y: -pathBounds.origin.y), blendMode: blend, alpha: 1)
+        draw(at: CGPoint(x: -pathBounds.origin.x, y: -pathBounds.origin.y), blendMode: blend, alpha: 1)
         
-        return UIGraphicsGetImageFromCurrentImageContext()
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
     
-    public func imageByMaskingToAreaInsidePath(maskPath: UIBezierPath) -> UIImage
+    public func imageByMaskingToAreaInsidePath(_ maskPath: UIBezierPath) -> UIImage
     {
-        return compositeImage(maskPath, usingBlendMode: CGBlendMode.SourceIn)
+        return compositeImage(maskPath, usingBlendMode: CGBlendMode.sourceIn)
     }
     
-    public func imageByMaskingToAreaOutsidePath(maskPath: UIBezierPath) -> UIImage
+    public func imageByMaskingToAreaOutsidePath(_ maskPath: UIBezierPath) -> UIImage
     {
-        return compositeImage(maskPath, usingBlendMode: CGBlendMode.SourceOut)
+        return compositeImage(maskPath, usingBlendMode: CGBlendMode.sourceOut)
     }
 }
