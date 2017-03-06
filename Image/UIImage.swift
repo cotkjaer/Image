@@ -42,6 +42,24 @@ extension UIImage
 
 extension UIImage
 {
+    public func overlay(color: UIColor) -> UIImage
+    {
+        let bounds = CGRect(origin: CGPoint.zero, size: size)
+        
+        UIGraphicsBeginImageContextWithOptions(size, !hasAlpha, 0)
+        
+        defer { UIGraphicsEndImageContext() }
+
+        draw(in: bounds)
+        
+        color.setFill()
+        
+        UIRectFillUsingBlendMode(bounds, .overlay)
+        
+        return UIGraphicsGetImageFromCurrentImageContext()!
+
+    }
+    
     public func tintedGradientImageWithColor(_ tintColor: UIColor) -> UIImage
     {
         return tintedImageWithColor(tintColor, blendingMode: .overlay)
