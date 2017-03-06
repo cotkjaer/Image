@@ -19,6 +19,7 @@ class OverlayViewController: UIViewController
  
     @IBOutlet weak var hueSlider: UISlider!
     
+    @IBOutlet weak var hueLabel: UILabel!
     // MARK : Lifecycle
     
     override func viewDidLoad()
@@ -41,14 +42,18 @@ class OverlayViewController: UIViewController
     
     @IBAction func handleSlider(_ slider: UISlider)
     {
-        color = UIColor(hue: CGFloat(slider.value), saturation: 0.8, brightness: 0.7, alpha: 1)
+        let hue = CGFloat(slider.value * 100) / 100
+        
+        color = UIColor(hue: hue, saturation: 0.8, brightness: 0.7, alpha: 1)
         
         updateImage()
+        
+        hueLabel.text = String(format: "%0.2f", hue)
     }
     
     
     func updateImage()
     {
-        overlayedImageView.image = originalImageView.image?.overlay(color: color)
+        overlayedImageView.image = originalImageView.image?.blendedWith(color: color)
     }
 }
